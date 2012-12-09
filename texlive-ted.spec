@@ -58,3 +58,16 @@ pairs or tokens with a confusing meaning) occur in the list.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
+
+
+%changelog
+* Wed Jan 04 2012 Paulo Andrade <pcpa@mandriva.com.br> 1.06-2
++ Revision: 756551
+- Rebuild to reduce used resources
+
+* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 1.06-1
++ Revision: 719664
+- texlive-ted
+- texlive-ted
+- texlive-ted
+

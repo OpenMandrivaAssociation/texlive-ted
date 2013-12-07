@@ -6,7 +6,7 @@
 # catalog-version 1.06
 Name:		texlive-ted
 Version:	1.06
-Release:	3
+Release:	4
 Summary:	A (primitive) token list editor
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/ted

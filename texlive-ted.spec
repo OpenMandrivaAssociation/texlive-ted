@@ -1,55 +1,30 @@
-Name:		texlive-ted
-Version:	15878
-Release:	2
+%global tl_name ted
+%global tl_revision 79618
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.06
+Release:	%{tl_revision}.1
 Summary:	A (primitive) token list editor
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/ted
-License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/ted.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/ted.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/ted.source.r%{version}.tar.xz
+License:	lppl1.3c
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/ted.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/ted.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/ted.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-Just like sed is a stream editor, ted is a token list editor.
-Actually, it is not as powerfull as sed, but its main feature
-is that it really works with tokens, not only characters. The
-ted package provides two user macros: \Substitute and
-\ShowTokens. The first is maybe the most useful: it performs
-substitutions in token lists (even inside braces). The second
-displays each token of the list (one per line) with its catcode
-(in the list, not just the current one), and can be useful for
-debugging or for TeX learners. Ted is designed to work well
-even if strange tokens (that is, unusual {charcode, catcode}
-pairs or tokens with a confusing meaning) occur in the list.
+Just like sed is a stream editor, ted is a token list editor. Actually,
+it is not as powerful as sed, but its main feature is that it really
+works with tokens, not only characters. The ted package provides two
+user macros: \Substitute and \ShowTokens. The first is maybe the most
+useful: it performs substitutions in token lists (even inside braces).
+The second displays each token of the list (one per line) with its
+catcode (in the list, not just the current one), and can be useful for
+debugging or for TeX learners. Ted is designed to work well even if
+strange tokens (that is, unusual {charcode, catcode} pairs or tokens
+with a confusing meaning) occur in the list.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/latex/ted/ted.sty
-%doc %{_texmfdistdir}/doc/latex/ted/README
-%doc %{_texmfdistdir}/doc/latex/ted/ted-fr.pdf
-%doc %{_texmfdistdir}/doc/latex/ted/ted.pdf
-#- source
-%doc %{_texmfdistdir}/source/latex/ted/ted.dtx
-
-#-----------------------------------------------------------------------
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
